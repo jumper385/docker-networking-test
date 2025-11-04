@@ -16,4 +16,3 @@ Thumbs.db
 
 # Ignore any specific files that should not be tracked
 # For example, if you have a local data volume that's not part of the image
-/workspace/

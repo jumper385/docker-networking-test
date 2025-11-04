@@ -4,12 +4,12 @@ services:
         context: ./ubuntu
         dockerfile: Dockerfile
     container_name: ubuntu-dev
-    command: ["sleep", "infinity"]  # or "tail -f /dev/null"
-    stdin_open: true   # keep STDIN open for `docker compose exec`
-    tty: true          # allocate a TTY
+    command: ["sleep", "infinity"]
+    stdin_open: true   
+    tty: true         
     restart: unless-stopped
     volumes:
-      - ./workspace:/workspace   # optional, for persistent files
+      - ./workspace:/workspace 
     
     networks:
       subnet1:
@@ -22,12 +22,12 @@ services:
         context: ./ubuntu
         dockerfile: Dockerfile
     container_name: test_host
-    command: ["sleep", "infinity"]  # or "tail -f /dev/null"
-    stdin_open: true   # keep STDIN open for `docker compose exec`
-    tty: true          # allocate a TTY
+    command: ["sleep", "infinity"] 
+    stdin_open: true  
+    tty: true        
     restart: unless-stopped
     volumes:
-      - ./test_host_ws:/workspace   # optional, for persistent files
+      - ./test_host_ws:/workspace  
 
     networks:
       subnet1:
