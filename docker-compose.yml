@@ -1,0 +1,51 @@
+services:
+  ubuntu:
+    build:
+        context: ./ubuntu
+        dockerfile: Dockerfile
+    container_name: ubuntu-dev
+    command: ["sleep", "infinity"]  # or "tail -f /dev/null"
+    stdin_open: true   # keep STDIN open for `docker compose exec`
+    tty: true          # allocate a TTY
+    restart: unless-stopped
+    volumes:
+      - ./workspace:/workspace   # optional, for persistent files
+    
+    networks:
+      subnet1:
+        ipv4_address: 192.168.0.11
+      subnet2:
+        ipv4_address: 192.168.1.11
+
+  test_host:
+    build:
+        context: ./ubuntu
+        dockerfile: Dockerfile
+    container_name: test_host
+    command: ["sleep", "infinity"]  # or "tail -f /dev/null"
+    stdin_open: true   # keep STDIN open for `docker compose exec`
+    tty: true          # allocate a TTY
+    restart: unless-stopped
+    volumes:
+      - ./test_host_ws:/workspace   # optional, for persistent files
+
+    networks:
+      subnet1:
+        ipv4_address: 192.168.0.12
+      subnet2:
+        ipv4_address: 192.168.1.12
+
+
+networks:
+    subnet1:
+      driver: bridge
+      ipam:
+          config:
+              - subnet: 192.168.0.0/24
+                gateway: 192.168.0.1
+    subnet2:
+      driver: bridge
+      ipam:
+          config:
+              - subnet: 192.168.1.0/24
+                gateway: 192.168.1.1

@@ -1,0 +1,19 @@
+# Ignore build artifacts and temporary files
+/build/
+/dist/
+*.log
+*.tmp
+
+# Ignore local environment variables or configuration files
+.env
+.env.local
+
+# Ignore directories specific to your IDE or OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Ignore any specific files that should not be tracked
+# For example, if you have a local data volume that's not part of the image
+/workspace/
